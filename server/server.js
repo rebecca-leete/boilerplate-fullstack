@@ -1,12 +1,14 @@
 const path = require('path')
 const express = require('express')
 
-const fruitRoutes = require('./routes/fruits')
+const trumpRoutes = require('./routes/trumpCard')
+const sentimentRoutes = require('./routes/sentiment')
 
 const server = express()
 
 server.use(express.static(path.join(__dirname, 'public')))
 
-server.use('/api/v1/fruits', fruitRoutes)
+server.use('/v1/quotes', trumpRoutes)
+server.use('/sentiment', sentimentRoutes)
 
 module.exports = server
