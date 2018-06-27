@@ -1,34 +1,21 @@
 import React from 'react'
+import request from 'superagent'
 
-import {getFruits} from '../apiClient'
+import { HashRouter as Router, Route } from 'react-router-dom'
 
-class App extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      fruits: []
-    }
-  }
+// Components
+import Beers from './Beers'
+import Beer from './Beer'
 
-  componentDidMount () {
-    getFruits()
-      .then(fruits => {
-        this.setState({fruits})
-      })
-  }
-
-  render () {
-    return (
-      <div className='app'>
-        <h1>Fullstack Boilerplate</h1>
-        <ul>
-          {this.state.fruits.map(fruit => (
-            <li key={fruit}>{fruit}</li>
-          ))}
-        </ul>
-      </div>
-    )
-  }
+const App = (props) => {
+  return (
+    <Router>
+      <React.Fragment>
+        <Route exact path='/' component={Beers} />
+        <Route exact path='/beer/:id' component={Beer} />
+      </React.Fragment>
+    </Router>
+  )
 }
 
 export default App
